@@ -1,1 +1,1 @@
-console.log('hello');
+import * as _ from 'lodash';
