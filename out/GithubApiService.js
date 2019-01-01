@@ -12,8 +12,15 @@ var GithubApiService = /** @class */ (function () {
     function GithubApiService() {
     }
     GithubApiService.prototype.getUserInfo = function (userName) {
-        request.get('https://api.github.com/users/' + userName, function (response) {
-            console.log(response);
+        var options = {
+            headers: {
+                'User-Agent': 'request'
+            }
+        };
+        request.get('https://api.github.com/users/' + userName, options, function (error, response, body) {
+            console.log('error: ', error);
+            console.log('response: ', response);
+            console.log('body: ', body);
         });
     };
     GithubApiService.prototype.getRepos = function () {
