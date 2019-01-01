@@ -5,6 +5,6 @@ var svc = new GithubApiService_1.GithubApiService();
 svc.getUserInfo('bunnydeviloper', function (user) {
     console.log(user);
 });
-svc.getRepos('bunnydeviloper', function (user) {
-    console.log(user);
+svc.getRepos('bunnydeviloper', function (repos) {
+    console.log(repos);
 });
