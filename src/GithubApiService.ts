@@ -20,7 +20,14 @@ export class GithubApiService {
       });
   }
 
-  getRepos() {
-    // do something
+  getRepos(userName: string, cb: (user: User) => any) {
+    request.get(
+      'https://api.github.com/users/' + userName + '/repos',
+      OPTIONS,
+      (error: any, response: any, body: any) => {
+        console.log('in fn: ', body);
+        cb(body);
+      }
+    );
   }
 }
