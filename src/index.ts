@@ -1,5 +1,7 @@
 import { GithubApiService } from './GithubApiService';
+import { User } from './User';
 
 let svc = new GithubApiService();
-svc.getUserInfo('bunnydeviloper');
-
+svc.getUserInfo('bunnydeviloper', (user: User) => {
+  console.log(user);
+});
