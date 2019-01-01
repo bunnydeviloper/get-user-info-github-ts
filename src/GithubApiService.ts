@@ -1,21 +1,21 @@
 import * as request from 'request';
 import { User } from './User';
 
+const OPTIONS: any = {
+  headers: {
+    'User-Agent': 'request'
+  },
+  json: true, /* pass this arg in so you don't have to parse body */
+};
+
 export class GithubApiService {
   getUserInfo(userName: string, cb: (user: User) => any) {
-    let options: any = {
-      headers: {
-        'User-Agent': 'request'
-      },
-      json: true, /* pass this arg in so you don't have to parse body */
-    };
-
     // request.get(url, headers, callback)
     request.get(
       'https://api.github.com/users/' + userName,
-      options,
+      OPTIONS,
       (error: any, response: any, body: any) => {
-        let user = new User(body);
+        let user = new User(body); // no need to parse b/c above
         cb(user);
       });
   }
