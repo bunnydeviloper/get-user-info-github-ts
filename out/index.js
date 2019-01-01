@@ -10,11 +10,18 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var GithubApiService_1 = require("./GithubApiService");
 var _ = __importStar(require("lodash"));
 var svc = new GithubApiService_1.GithubApiService();
-svc.getUserInfo('bunnydeviloper', function (user) {
-    svc.getRepos('bunnydeviloper', function (repos) {
-        var sortedRepos = _.sortBy(repos, [function (repo) { return repo.size * -1; }]);
-        // note: *-1 so we sort highest -> lowest
-        var filteredRepos = _.take(sortedRepos, 3);
-        user.repos = filteredRepos;
+if (process.argv.length < 3) {
+    console.log('Please pass username as argument (eg: npm start octocat)');
+}
+else {
+    var username_1 = process.argv[2];
+    svc.getUserInfo(username_1, function (user) {
+        svc.getRepos(username_1, function (repos) {
+            var sortedRepos = _.sortBy(repos, [function (repo) { return repo.size * -1; }]);
+            // note: *-1 so we sort highest -> lowest
+            var filteredRepos = _.take(sortedRepos, 3);
+            user.repos = filteredRepos;
+            console.log(user);
+        });
     });
-});
+}
