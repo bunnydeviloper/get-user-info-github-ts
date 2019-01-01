@@ -1,1 +1,5 @@
-import * as _ from 'lodash';
+import { GithubApiService } from './GithubApiService';
+
+let svc = new GithubApiService();
+svc.getUserInfo('bunnydeviloper');
+
